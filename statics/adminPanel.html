@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <link rel="stylesheet" href="/statics/css/main.css"> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پنل ادمین</title>
+</head>
+<body>
+    <h2>پنل مدیریت دروس و کلاس‌ها</h2>
+    <form id="form">
+        <h3>استاد</h3>
+        <select id="professorDropdown"></select>
+        <h3>درس</h3>
+        <select id="lessonDropdown"></select>
+        <h3>شماره کلاس:</h3>  <input type="number" id="class">
+        <h3>ظرفیت:</h3>  <input type="number" id="capacity">
+        <h3>زمان:</h3>  <input type="text" id="time">
+        <input type="submit" value="ثبت کلاس">
+    </form>
+    <button onclick="uploadData()">نمایش کلاس‌ها</button>
+    <table border="1" id="myTable">
+        <thead>
+            <tr>
+                <th>واحد</th>
+                <th>نام درس</th>
+                <th>استاد</th>
+                <th>کلاس</th>
+                <th>ظرفیت</th>
+                <th>تاریخ</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script src="/frontend/js/adminPanel.js"></script>
+</body>
+</html>

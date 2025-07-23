@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/statics/css/permission.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدیریت نقش‌ها و دروس</title>
+</head>
+<body>
+    <div class="section">
+        <input type="text" placeholder="search username" id="searchAllUsers">
+        <button onclick="loadAllUsers()">search</button>
+        <table id="myTable">
+            <thead>
+                <tr>
+                    <th>:نام کاربری</th>
+                    <th>مدعی برای:</th>
+                    <th>اضافه کردن به اساتید</th>
+                    <th>اضافه کردن به دانشجویان</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <div class="section">
+        <input type="text" id="lessonInput" placeholder="نام درس">
+        <input type="number" id="unitInput" placeholder="تعداد واحد">
+        <button onclick="insertLesson()">submit</button>
+        <table id="myTable2">
+            <thead>
+                <tr>
+                    <th>نام درس:</th>
+                    <th>عملیات</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <script src="/js/permission.js"></script>
+</body>
+</html> 
