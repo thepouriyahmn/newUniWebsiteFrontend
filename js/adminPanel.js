@@ -3,6 +3,9 @@ let serverIP = "localhost";
 window.onload = function() {
     onloaded();
 };
+function goPermission() {
+    window.location.href = "http://"+serverIP+":8082/permission"
+}
 
 async function onloaded() {
     let token = document.cookie.split("; ").find(row => row.startsWith("token="))?.split("=")[1];
@@ -39,24 +42,25 @@ document.getElementById("form").addEventListener("submit", function (event) {
     const professorDropDown = document.getElementById("professorDropdown");
     const lessonDropDown = document.getElementById("lessonDropdown");
     const data = {
-        name: lessonDropDown.options[lessonDropDown.selectedIndex].text,
-        tname: professorDropDown.options[professorDropDown.selectedIndex].text,
-        class: parseInt(document.getElementById("class").value),
+        lessonName: lessonDropDown.options[lessonDropDown.selectedIndex].text,
+        professorName: professorDropDown.options[professorDropDown.selectedIndex].text,
+        classNumber: parseInt(document.getElementById("class").value),
         capacity: parseInt(document.getElementById("capacity").value),
-        time: document.getElementById("time").value
+        date: document.getElementById("time").value
     };
     submitClass(data);
 });
 
 async function submitClass(data) {
     let token = document.cookie.split("; ").find(row => row.startsWith("token="))?.split("=")[1];
-    let response = await fetch(`http://${serverIP}:8081/insertLesson`, {
+    console.log(data)
+    let response = await fetch(`http://${serverIP}:8081/insertClass`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             "Authorization": `Bearer ${token}`
         },
-        body: JSON.stringify({ lessonName: data.name, lessonUnit: 3 }) // فرض بر ۳ واحدی بودن
+        body: JSON.stringify(data) // فرض بر ۳ واحدی بودن
     });
     if (!response.ok) {
         alert("خطا در ثبت کلاس");
@@ -67,11 +71,12 @@ async function submitClass(data) {
 
 async function uploadData() {
     let token = document.cookie.split("; ").find(row => row.startsWith("token="))?.split("=")[1];
-    let response = await fetch(`http://${serverIP}:8081/showAllLessons`,{
+    let response = await fetch(`http://${serverIP}:8081/showClasses`,{
         headers: { "Authorization": `Bearer ${token}` }
     });
     if (!response.ok) return;
     let res = await response.json();
+    console.log("lessons: ",res)
     let table = document.getElementById("myTable").getElementsByTagName('tbody')[0];
     table.innerHTML = "";
     res.forEach(r => addrows(r, table));
@@ -81,8 +86,42 @@ function addrows(param, table) {
     let newRow = table.insertRow();
     newRow.insertCell(0).innerText = param.lessonUnit;
     newRow.insertCell(1).innerText = param.lessonName;
-    newRow.insertCell(2).innerText = param.professor || "-";
-    newRow.insertCell(3).innerText = param.class || "-";
+    newRow.insertCell(2).innerText = param.professorName || "-";
+    newRow.insertCell(3).innerText = param.classNumber || "-";
     newRow.insertCell(4).innerText = param.capacity || "-";
-    newRow.insertCell(5).innerText = param.time || "-";
+    newRow.insertCell(5).innerText = param.date || "-";
+             let deleteButton = document.createElement("button")
+          deleteButton.innerText = "delete"
+            deleteButton.onclick = async function  (){
+                table.deleteRow(newRow.rowIndex -1);
+                let token = document.cookie.split("; ").find(row => row.startsWith("token="))?.split("=")[1];
+let deleter = await fetch("http://"+serverIP+":8081/deleteClass",{
+    method : "POST",
+    headers: {
+            'Content-Type': 'application/json' ,
+            "Authorization": `Bearer ${token}`
+        },
+        
+        body: JSON.stringify({id: param.id} )
+        
+
+}
+
+
+)
+if(deleter.status===401){
+    alert("access denied, please login")
+    window.location.href = "http://"+serverIP+":8082";
+    return
+}
+if (!deleter.ok){
+    alert("someting went wrong!")
+    window.location.href = "http://"+serverIP+":8082";
+    return
+}
+       
+    }
+    let cell7 = newRow.insertCell(6);
+    cell7.appendChild(deleteButton)
+
 }
