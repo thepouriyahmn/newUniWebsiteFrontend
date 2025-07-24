@@ -7,7 +7,7 @@ window.onload = function() {
 
 async function loadAvailableLessons() {
     let token = document.cookie.split("; ").find(row => row.startsWith("token="))?.split("=")[1];
-    let res = await fetch(`http://${serverIP}:8081/showAllLessons`, {
+    let res = await fetch(`http://${serverIP}:8081/showClasses`, {
         headers: { "Authorization": `Bearer ${token}` }
     });
     if (!res.ok) return;
@@ -24,6 +24,7 @@ async function loadPickedUnits() {
     });
     if (!res.ok) return;
     let units = await res.json();
+    console.log(units)
     let table = document.getElementById("MyTable1").getElementsByTagName('tbody')[0];
     table.innerHTML = "";
     units.forEach(unit => addPickedUnitRow(unit, table));
@@ -31,12 +32,12 @@ async function loadPickedUnits() {
 
 function addLessonRow(lesson, table) {
     let row = table.insertRow();
-    row.insertCell(0).innerText = lesson.unit;
-    row.insertCell(1).innerText = lesson.name;
-    row.insertCell(2).innerText = lesson.tname;
-    row.insertCell(3).innerText = lesson.class;
+    row.insertCell(0).innerText = lesson.lessonUnit;
+    row.insertCell(1).innerText = lesson.lessonName;
+    row.insertCell(2).innerText = lesson.professorName;
+    row.insertCell(3).innerText = lesson.classNumber;
     row.insertCell(4).innerText = lesson.capacity;
-    row.insertCell(5).innerText = lesson.time;
+    row.insertCell(5).innerText = lesson.date;
     let actionCell = row.insertCell(6);
     let addButton = document.createElement("button");
     addButton.innerText = "add";
@@ -54,13 +55,13 @@ function addLessonRow(lesson, table) {
 
 function addPickedUnitRow(unit, table) {
     let row = table.insertRow();
-    row.insertCell(0).innerText = unit.unit;
-    row.insertCell(1).innerText = unit.name;
-    row.insertCell(2).innerText = unit.tname;
-    row.insertCell(3).innerText = unit.class;
-    row.insertCell(4).innerText = unit.leftCapacity;
-    row.insertCell(5).innerText = unit.time;
-    row.insertCell(6).innerText = unit.mark === null ? "no mark yet" : unit.mark;
+     row.insertCell(0).innerText = unit.lessonUnit;
+    row.insertCell(1).innerText = unit.lessonName;
+    row.insertCell(2).innerText = unit.professorName;
+    row.insertCell(3).innerText = unit.classNumber;
+    row.insertCell(4).innerText = unit.capacity;
+    row.insertCell(5).innerText = unit.date;
+    row.insertCell(6).innerText = unit.mark === -1 ? "no mark yet" : unit.mark;
     let actionCell = row.insertCell(7);
     let delButton = document.createElement("button");
     delButton.innerText = "delete";
