@@ -10,7 +10,11 @@ async function loadAvailableLessons() {
     let res = await fetch(`http://${serverIP}:8081/showClasses`, {
         headers: { "Authorization": `Bearer ${token}` }
     });
-    if (!res.ok) return;
+    if (!res.ok) {
+        
+        window.location.href = "http://"+serverIP+":8082/unauthorized"
+
+    };
     let lessons = await res.json();
     let table = document.getElementById("myTable").getElementsByTagName('tbody')[0];
     table.innerHTML = "";
@@ -22,7 +26,10 @@ async function loadPickedUnits() {
     let res = await fetch(`http://${serverIP}:8081/pickedUnits`, {
         headers: { "Authorization": `Bearer ${token}` }
     });
-    if (!res.ok) return;
+    if (!res.ok) {
+        window.location.href = "http://"+serverIP+":8082/unauthorized"
+
+    };
     let units = await res.json();
     console.log(units)
     let table = document.getElementById("MyTable1").getElementsByTagName('tbody')[0];

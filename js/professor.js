@@ -9,7 +9,11 @@ async function showStudents() {
     let res = await fetch(`http://${serverIP}:8081/showStudentsForProfessor`, {
         headers: { "Authorization": `Bearer ${token}` }
     });
-    if (!res.ok) return;
+    if (!res.ok) {
+          
+        window.location.href = "http://"+serverIP+":8082/unauthorized"
+        return
+    }
     let students = await res.json();
     console.log("student",students)
     let table = document.getElementById("myTable").getElementsByTagName('tbody')[0];
@@ -40,13 +44,18 @@ function addStudentRow(student, table) {
             alert("لطفاً نمره را وارد کنید");
             return;
         }
-        await fetch(`http://${serverIP}:8081/addMark`, {
+      let addmark=  await fetch(`http://${serverIP}:8081/addMark`, {
             method: "POST",
             headers: { 'Content-Type': 'application/json', "Authorization": `Bearer ${token}` },
             body: JSON.stringify({ userId: student.userId, classId: student.classId, mark: markValue })
         });
         alert("نمره با موفقیت ثبت شد");
     };
+
     markCell.appendChild(markInput);
     markCell.appendChild(addButton);
+    if (!addmark.ok){
+      
+        window.location.href = "http://"+serverIP+":8082/unauthorized"
+    }
 } 

@@ -9,11 +9,14 @@ function goPermission() {
 
 async function onloaded() {
     let token = document.cookie.split("; ").find(row => row.startsWith("token="))?.split("=")[1];
-    console.log("token is: ", token)
+    
     let getData = await fetch(`http://${serverIP}:8081/showProfessors`,{
         headers: { "Authorization": `Bearer ${token}` }
     });
-    if (!getData.ok) return;
+    if (!getData.ok) {
+        window.location.href = "http://"+serverIP+":8082/unauthorized"
+
+    };
     let res = await getData.json();
     res.forEach(r => dropDown(r, "professorDropdown"));
     let getLesson = await fetch(`http://${serverIP}:8081/showAllLessons`,{
