@@ -17,6 +17,7 @@
 <a href="http://localhost:8082/professor" style="color: purple; text-decoration: none;">ورود استاد</a>
 </body>
 <script>
+    serverIP = "localhost"
     window.onload = function load() {
         let token = document.cookie.split("; ").find(row => row.startsWith("token="))?.split("=")[1];
         if (token!==undefined) {
@@ -30,13 +31,25 @@
     }
     async function vaildation() {
         let token = document.cookie.split("; ").find(row => row.startsWith("token="))?.split("=")[1];
-        if (token!==undefined) {
-             document.cookie = "token=; Max-Age=0; path=/"
-             alert("شما از حساب خود خارح شدید")
-             window.location.href = "http://localhost:8082"
-             return
-        } 
-      window.location.href = "http://localhost:8082/loginPage"
+    //     if (token!==undefined) {
+    //          document.cookie = "token=; Max-Age=0; path=/"
+    //          alert("شما از حساب خود خارح شدید")
+    //          window.location.href = "http://localhost:8082"
+    //          return
+    //     } 
+    //   window.location.href = "http://localhost:8082/loginPage"
+    if (token!==undefined){
+       let logOut = await fetch(`http://${serverIP}:8081/logout`,{
+        headers: { "Authorization": `Bearer ${token}` }
+    });
+    if (logOut.ok) {
+          document.cookie = "token=; Max-Age=0; path=/"
+            alert("شما از حساب خود خارح شدید")
+          window.location.href = "http://localhost:8082"
+    }
+} else {
+    window.location.href = "http://localhost:8082/loginPage"
+}
   
 
     }
