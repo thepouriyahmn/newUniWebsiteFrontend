@@ -1,42 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- <link rel="stylesheet" href="/statics/css/daneshjo.css"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>انتخاب واحد</title>
+    <link rel="stylesheet" href="/statics/css/daneshjo.css">
 </head>
 <body>
-    <table border="1" id="myTable">
-        <thead>
-            <tr>
-                <th>unit</th>
-                <th>name</th>
-                <th>professor</th>
-                <th>class number</th>
-                <th>capacity</th>
-                <th>date</th>
-                <th>action</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-    <table border="2" id="MyTable1">
-        <thead>
-            <tr>
-                <th>unit</th>
-                <th>name</th>
-                <th>professor</th>
-                <th>class number</th>
-                <th>capacity</th>
-                <th>date</th>
-                <th>mark</th>
-                <th>action</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-    <button onclick="loadAvailableLessons()">show units</button>
+    <div class="student-container">
+        <div class="page-header">
+            <h1>انتخاب واحد دانشجو</h1>
+            <p class="page-subtitle">مدیریت دروس و نمرات</p>
+        </div>
+        
+        <div class="control-buttons">
+            <button onclick="loadAvailableLessons()">نمایش واحدها</button>
+        </div>
+        
+        <div class="tables-container">
+            <div class="table-section available-courses">
+                <div class="section-title">دروس موجود</div>
+                <table id="myTable">
+                    <thead>
+                        <tr>
+                            <th>واحد</th>
+                            <th>نام درس</th>
+                            <th>استاد</th>
+                            <th>شماره کلاس</th>
+                            <th>ظرفیت</th>
+                            <th>تاریخ</th>
+                            <th>عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            
+            <div class="table-section enrolled-courses">
+                <div class="section-title">دروس ثبت‌شده</div>
+                <table id="MyTable1">
+                    <thead>
+                        <tr>
+                            <th>واحد</th>
+                            <th>نام درس</th>
+                            <th>استاد</th>
+                            <th>شماره کلاس</th>
+                            <th>ظرفیت</th>
+                            <th>تاریخ</th>
+                            <th>نمره</th>
+                            <th>عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
     <script src="/frontend/js/daneshjo.js"></script>
 </body>
 </html> 

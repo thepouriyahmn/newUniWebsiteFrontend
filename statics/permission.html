@@ -1,40 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- <link rel="stylesheet" href="/statics/css/permission.css"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مدیریت نقش‌ها و دروس</title>
+    <link rel="stylesheet" href="/statics/css/permission.css">
 </head>
 <body>
-    <div class="section">
-        <input type="text" placeholder="search username" id="searchAllUsers">
-        <button onclick="loadAllUsers()">search</button>
-        <table id="myTable">
-            <thead>
-                <tr>
-                    <th>:نام کاربری</th>
-                    <th>مدعی برای:</th>
-                    <th>اضافه کردن به اساتید</th>
-                    <th>اضافه کردن به دانشجویان</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-    </div>
-    <div class="section">
-        <input type="text" id="lessonInput" placeholder="نام درس">
-        <input type="number" id="unitInput" placeholder="تعداد واحد">
-        <button onclick="insertLesson()">submit</button>
-        <table id="myTable2">
-            <thead>
-                <tr>
-                    <th>نام درس:</th>
-                    <th>عملیات</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+    <div class="permission-container">
+        <div class="page-header">
+            <h1>مدیریت نقش‌ها و دروس</h1>
+            <p class="page-subtitle">تنظیم مجوزها و مدیریت دروس</p>
+        </div>
+        
+        <div class="sections-container">
+            <div class="section users-section">
+                <div class="section-title">مدیریت کاربران</div>
+                <div class="search-section">
+                    <input type="text" placeholder="جستجوی نام کاربری" id="searchAllUsers" class="search-input">
+                    <button onclick="loadAllUsers()" class="search-btn">جستجو</button>
+                </div>
+                <table id="myTable">
+                    <thead>
+                        <tr>
+                            <th>نام کاربری</th>
+                            <th>مدعی برای:</th>
+                            <th>اضافه کردن به اساتید</th>
+                            <th>اضافه کردن به دانشجویان</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            
+            <div class="section lessons-section">
+                <div class="section-title">مدیریت دروس</div>
+                <div class="form-group">
+                    <input type="text" id="lessonInput" placeholder="نام درس">
+                    <input type="number" id="unitInput" placeholder="تعداد واحد">
+                    <button onclick="insertLesson()" class="submit-btn">ثبت درس</button>
+                </div>
+                <table id="myTable2">
+                    <thead>
+                        <tr>
+                            <th>نام درس</th>
+                            <th>عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
     </div>
     <script src="/frontend/js/permission.js"></script>
 </body>

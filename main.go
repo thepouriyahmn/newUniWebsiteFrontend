@@ -45,6 +45,9 @@ func main() {
 	http.HandleFunc("/forbidden", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "statics/forbidden.html")
 	})
+	http.HandleFunc("/test-css", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "statics/test-css.html")
+	})
 	// Start server
 	err := http.ListenAndServe(":8082", nil)
 	if err != nil {

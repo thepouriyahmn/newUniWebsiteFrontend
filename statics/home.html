@@ -5,16 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>home page</title>
+    <link rel="stylesheet" href="/statics/css/home.css">
 </head>
 <body>
-    <button id="button1" onclick=vaildation()></button>
-    <h1>welcome to the University website!</h1>
-<br><br>
-<a href="http://localhost:8082/adminPanel" style="color: purple; text-decoration: none;">پنل ادمین</a>
-<br>
-<a href="http://localhost:8082/daneshjo" style="color: purple; text-decoration: none;">انتخاب واحد دانشجو</a>
-<br>
-<a href="http://localhost:8082/professor" style="color: purple; text-decoration: none;">ورود استاد</a>
+    <div class="container">
+        <button id="button1" onclick=vaildation()></button>
+        <h1>welcome to the University website!</h1>
+        <div class="nav-links">
+            <a href="http://localhost:8082/adminPanel" class="nav-link">پنل ادمین</a>
+            <a href="http://localhost:8082/daneshjo" class="nav-link">انتخاب واحد دانشجو</a>
+            <a href="http://localhost:8082/professor" class="nav-link">ورود استاد</a>
+        </div>
+    </div>
 </body>
 <script>
     serverIP = "localhost"

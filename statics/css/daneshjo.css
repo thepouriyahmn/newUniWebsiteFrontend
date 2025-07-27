@@ -1,0 +1,327 @@
+/* Student Page Styles - Modern & User-Friendly */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+.student-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}
+
+.page-subtitle {
+    color: #666;
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+.tables-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.table-section {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin-bottom: 0;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #667eea;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-title::before {
+    content: '📚';
+    font-size: 1.5rem;
+}
+
+.available-courses .section-title::before {
+    content: '🎓';
+}
+
+.enrolled-courses .section-title::before {
+    content: '📖';
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+}
+
+th {
+    padding: 15px 20px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+}
+
+td {
+    padding: 15px 20px;
+    text-align: center;
+    border-bottom: 1px solid #e1e5e9;
+    transition: background-color 0.3s ease;
+}
+
+tr:hover {
+    background-color: rgba(102, 126, 234, 0.05);
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Action buttons */
+.action-btn {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    margin: 0 5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.action-btn.enroll {
+    background: linear-gradient(45deg, #4caf50, #45a049);
+    color: white;
+    box-shadow: 0 3px 10px rgba(76, 175, 80, 0.3);
+}
+
+.action-btn.drop {
+    background: linear-gradient(45deg, #f44336, #d32f2f);
+    color: white;
+    box-shadow: 0 3px 10px rgba(244, 67, 54, 0.3);
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+}
+
+.action-btn.enroll:hover {
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+}
+
+.action-btn.drop:hover {
+    box-shadow: 0 5px 15px rgba(244, 67, 54, 0.4);
+}
+
+/* Control buttons */
+.control-buttons {
+    text-align: center;
+    margin: 30px 0;
+}
+
+button {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    margin: 10px 5px;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Status indicators */
+.course-status {
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.status-available {
+    background: rgba(76, 175, 80, 0.1);
+    color: #4caf50;
+}
+
+.status-enrolled {
+    background: rgba(33, 150, 243, 0.1);
+    color: #2196f3;
+}
+
+.status-full {
+    background: rgba(244, 67, 54, 0.1);
+    color: #f44336;
+}
+
+/* Mark display */
+.mark {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.mark.excellent {
+    color: #4caf50;
+}
+
+.mark.good {
+    color: #2196f3;
+}
+
+.mark.average {
+    color: #ff9800;
+}
+
+.mark.poor {
+    color: #f44336;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .student-container {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    .tables-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    table {
+        font-size: 0.9rem;
+    }
+    
+    th, td {
+        padding: 10px 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    table {
+        font-size: 0.8rem;
+    }
+    
+    th, td {
+        padding: 8px 12px;
+    }
+    
+    .action-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        margin: 2px;
+    }
+    
+    button {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+}
+
+/* Animation for page load */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.student-container {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.table-section {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.table-section:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+/* Loading state */
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.loading::after {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #e1e5e9;
+    border-radius: 50%;
+    border-top-color: #667eea;
+    animation: spin 1s ease-in-out infinite;
+    margin-left: 10px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+} 

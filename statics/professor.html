@@ -4,20 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>پنل استاد</title>
+    <link rel="stylesheet" href="/statics/css/professor.css">
 </head>
 <body>
-    <table border="1" id="myTable">
-        <thead>
-            <tr>
-                <th>student</th>
-                <th>lesson</th>
-                <th>class</th>
-                <th>time</th>
-                <th>mark</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
+    <div class="professor-container">
+        <div class="page-header">
+            <h1>پنل استاد</h1>
+            <p class="page-subtitle">مدیریت دانشجویان و نمرات</p>
+        </div>
+        
+        <div class="students-section">
+            <div class="section-title">لیست دانشجویان</div>
+            <table id="myTable">
+                <thead>
+                    <tr>
+                        <th>دانشجو</th>
+                        <th>درس</th>
+                        <th>کلاس</th>
+                        <th>زمان</th>
+                        <th>نمره</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
     <script src="/frontend/js/professor.js"></script>
 </body>
 </html> 
