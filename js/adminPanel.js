@@ -24,6 +24,13 @@ async function onloaded() {
     });
     let res2 = await getLesson.json();
     res2.forEach(r2 => dropDown(r2, "lessonDropdown"));
+    let getTerms = await fetch(`http://${serverIP}:8081/getTerms`,{
+        headers: { "Authorization": `Bearer ${token}` }
+    })
+      let res3 = await getTerms.json();
+      console.log("terms: ",res3)
+    res3.forEach(r3 => dropDown(r3, "termDropdown"));
+
 }
 
 function dropDown(param, tag) {
@@ -33,10 +40,13 @@ function dropDown(param, tag) {
         option.value = param.id;
         option.textContent = param.name;
         dropdown.appendChild(option);
-    } else {
+    } else if (tag == "lessonDropdown") {
         option.value = param.id;
         option.textContent = param.lessonName;
         dropdown.appendChild(option);
+    } else if(tag == "termDropdown"){
+          option.textContent = param;  
+    dropdown.appendChild(option); 
     }
 }
 
@@ -44,6 +54,7 @@ document.getElementById("form").addEventListener("submit", function (event) {
     event.preventDefault();
     const professorDropDown = document.getElementById("professorDropdown");
     const lessonDropDown = document.getElementById("lessonDropdown");
+    const termDropDown = document.getElementById("termDropDown");
     const data = {
         lessonName: lessonDropDown.options[lessonDropDown.selectedIndex].text,
         professorName: professorDropDown.options[professorDropDown.selectedIndex].text,
