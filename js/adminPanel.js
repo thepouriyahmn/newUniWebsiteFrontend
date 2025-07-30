@@ -54,13 +54,14 @@ document.getElementById("form").addEventListener("submit", function (event) {
     event.preventDefault();
     const professorDropDown = document.getElementById("professorDropdown");
     const lessonDropDown = document.getElementById("lessonDropdown");
-    const termDropDown = document.getElementById("termDropDown");
+    const termDropDown = document.getElementById("termDropdown");
     const data = {
         lessonName: lessonDropDown.options[lessonDropDown.selectedIndex].text,
         professorName: professorDropDown.options[professorDropDown.selectedIndex].text,
         classNumber: parseInt(document.getElementById("class").value),
         capacity: parseInt(document.getElementById("capacity").value),
-        date: document.getElementById("time").value
+        date: document.getElementById("time").value,
+        term: termDropDown.options[termDropDown.selectedIndex].text,
     };
     submitClass(data);
 });
@@ -74,7 +75,7 @@ async function submitClass(data) {
             'Content-Type': 'application/json',
             "Authorization": `Bearer ${token}`
         },
-        body: JSON.stringify(data) // فرض بر ۳ واحدی بودن
+        body: JSON.stringify(data) 
     });
     if (!response.ok) {
         alert("خطا در ثبت کلاس");
