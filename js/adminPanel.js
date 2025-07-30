@@ -86,7 +86,9 @@ async function submitClass(data) {
 
 async function uploadData() {
     let token = document.cookie.split("; ").find(row => row.startsWith("token="))?.split("=")[1];
-    let response = await fetch(`http://${serverIP}:8081/showClasses`,{
+    const termDropDown = document.getElementById("termDropdown");
+    let input = termDropDown.options[termDropDown.selectedIndex].text
+    let response = await fetch(`http://${serverIP}:8081/showClasses?input=${encodeURIComponent(input)}`,{
         headers: { "Authorization": `Bearer ${token}` }
     });
     if (!response.ok) return;
@@ -105,6 +107,7 @@ function addrows(param, table) {
     newRow.insertCell(3).innerText = param.classNumber || "-";
     newRow.insertCell(4).innerText = param.capacity || "-";
     newRow.insertCell(5).innerText = param.date || "-";
+      newRow.insertCell(6).innerText = param.term || "-";
              let deleteButton = document.createElement("button")
           deleteButton.innerText = "delete"
             deleteButton.onclick = async function  (){
@@ -136,7 +139,7 @@ if (!deleter.ok){
 }
        
     }
-    let cell7 = newRow.insertCell(6);
+    let cell7 = newRow.insertCell(7);
     cell7.appendChild(deleteButton)
 
 }
