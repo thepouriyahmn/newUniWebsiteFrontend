@@ -1,13 +1,28 @@
 let serverIP = "localhost";
 
-window.onload = function() {
-    loadAvailableLessons();
-    loadPickedUnits();
+window.onload = async function() {
+    await loadTerms();           // صبر کن تا پر شدن dropdown تموم بشه
+    loadPickedUnits();           // این رو می‌تونی قبل یا بعد بزنی
+    loadAvailableLessons();      // حالا که dropdown آماده‌ست، این رو صدا بزن
 };
-
-async function loadAvailableLessons() {
+async function loadTerms() {
     let token = document.cookie.split("; ").find(row => row.startsWith("token="))?.split("=")[1];
-    let res = await fetch(`http://${serverIP}:8081/showClasses`, {
+       let getTerms = await fetch(`http://${serverIP}:8081/getTerms`,{
+        headers: { "Authorization": `Bearer ${token}` }
+    })
+      let res3 = await getTerms.json();
+      console.log("terms: ",res3)
+    res3.forEach(r3 => dropDown(r3, "termDropdown"));
+}
+async function loadAvailableLessons() {
+      
+  console.log("works func ")
+    let token = document.cookie.split("; ").find(row => row.startsWith("token="))?.split("=")[1];
+    
+    let termDropDown = document.getElementById("termDropdown");
+    let input = termDropDown.options[termDropDown.selectedIndex].text
+
+    let res = await fetch(`http://${serverIP}:8081/showClasses?input=${encodeURIComponent(input)}`, {
         headers: { "Authorization": `Bearer ${token}` }
     });
     if (!res.ok) {
@@ -83,3 +98,13 @@ function addPickedUnitRow(unit, table) {
     };
     actionCell.appendChild(delButton);
 } 
+function dropDown(param, tag) {
+    var dropdown = document.getElementById(tag);
+    var option = document.createElement("option");
+
+    if (tag === "termDropdown") {
+        option.value = param;
+        option.textContent = param;
+        dropdown.appendChild(option);
+    }
+}
